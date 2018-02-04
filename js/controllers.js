@@ -101,22 +101,72 @@ angular.module('app')
 .controller('jenisAyamInfo',function($scope,$rootScope,jenisAyam,premanReq){
 	var ctrl = this;
 	$scope.jenisAyams;
+	$scope.reload = true;
+	
 	
 	$scope.get = function(){
 		jenisAyam.then(function(data){
 		$scope.jenisAyams = data.data.data;
-		$scope.$apply();
-		console.log($scope.jenisAyams); 
 		});
 	}
 	
 	
-	$scope.get();
-	
-	
 	//delete
 	$scope.delet = function(data){
-		alert("asdasd");
+		var ask = confirm("are you Sure..?");
+
+		if(ask == true){
+			premanReq({
+				query: 'info.php?action=ayam&key=delete',
+				data :{token:localStorage['token'],cond:["jenis","=",data]},
+			}).then(function(datanya){
+				console.log(datanya);
+				if(datanya.data.status == "ok"){
+					var c = 0;
+					while(c<$scope.jenisAyams.length){
+						//console.log(c);
+						var jenis = $scope.jenisAyams[c].jenis;
+						if(jenis==data){
+							$scope.jenisAyams.splice(c,1);
+							//console.log($scope.jenisAyams);
+							$scope.$apply;
+							break;
+						}
+						c++;
+						
+					}	
+				}else{
+					alert("fails");
+				}
+				
+			});
+		}else{
+			
+			
+		}
+		
+		
 	}
+	
+	
+	$scope.insert = function(){
+		if($scope.jenisbaru!=""){
+			premanReq({
+				query:'info.php?action=ayam&key=insert',
+				data:{token:localStorage['token'],data:{jenis:$scope.jenisbaru}},
+			}).then(function(datanya){
+				$scope.reload = true;
+			});
+			
+		}
+	}
+
+	$scope.$watch("reload",function(){
+		if($scope.reload == true){
+			$scope.get();
+			$scope.reload = false;
+		}
+	});
+	
 })
 

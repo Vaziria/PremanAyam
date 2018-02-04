@@ -3,7 +3,12 @@
                 <div class="card-header">
                   <i class="fa fa-align-justify"></i> Jenis Ayam
 					<div class="form-group form-actions" style="float:right">
-						<button type="submit" class="btn btn-sm btn-primary"><i class="icon icon-doc"></i> New</button>
+						
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Nama Kandang" ng-model="jenisbaru">
+							<button type="submit" class="btn btn-sm btn-primary" ng-click="insert()"><i class="icon icon-doc"></i> New</button>
+                          
+                        </div>
 					</div>
                 </div>
                 <div class="card-body">
