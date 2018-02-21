@@ -1,5 +1,4 @@
-angular
-.module('app')
+angular.module('app')
 .config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$breadcrumbProvider', function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $breadcrumbProvider) {
 
   $urlRouterProvider.otherwise('/dashboard');
@@ -90,24 +89,46 @@ angular
       label: 'Kandang',
     },
   })
-  .state('app.kandang_baru',{
-	url: '/kandang_baru',
-    templateUrl: 'views/page/kandang_baru.html',
+  .state('app.kandangForm',{
+	url: '/kandang/:id',
+    templateUrl: 'views/page/kandangForm.html',
     //page title goes here
-	params: { subtitle: 'Kandang User' },
+	params: { subtitle: 'Kandang Form' },
     ncyBreadcrumb: {
       label: 'Kandang',
     },
   })
   //info
   .state('app.jenisAyamInfo',{
-	url: '/info',
+	url: '/info-ayam',
     templateUrl: 'views/page/info/jenisayam.html',
     //page title goes here
-	params: { subtitle: 'Kandang User' },
+	params: { subtitle: 'Info Jenis Ayam' },
     ncyBreadcrumb: {
-      label: 'Kandang',
+      label: 'info',
     },
+	
+  })
+  .state('app.vaksinInfo',{
+	url: '/info-vaksin',
+    templateUrl: 'views/page/info/vaksin.html',
+    //page title goes here
+	params: { subtitle: 'Info Vaksin' },
+    ncyBreadcrumb: {
+      label: 'info',
+    },
+	
+  })
+  .state('app.test',{
+	url: '/test/:judul',
+    templateUrl: 'views/page/test.html',
+    //page title goes here
+	hiddenParam : 'YES',
+	params: { subtitle: 'test' },
+    ncyBreadcrumb: {
+      label: 'test',
+    },
+	
   })
   
   

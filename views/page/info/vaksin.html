@@ -1,0 +1,35 @@
+<div class="col-lg-12" ng-controller="vaksinInfo">
+              <div class="card">
+                <div class="card-header">
+                  <i class="fa fa-align-justify"></i> Jenis Ayam
+					<div class="form-group form-actions" style="float:right">
+						
+						<div class="input-group">
+							<button type="submit" class="btn btn-sm btn-primary" ng-click="insert()"><i class="icon icon-doc"></i> New</button>
+                          
+                        </div>
+					</div>
+                </div>
+                <div class="card-body">
+                  <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                    <thead>
+                      <tr>
+                        <th>Jenis</th>
+                        <th>Merek</th>
+                        <th>Harga</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="vaksin in vaksins">
+                        <td>{{vaksin.jenis}}</td>
+                        <td>{{vaksin.merek}}</td>
+                        <td>{{vaksin.harga}}</td>
+                        <td>
+                          <button type="button" class="btn btn-sm btn-danger" ng-click="delet(vaksin.id)"><i class="icon icon-close"></i> Delete</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+     </div>

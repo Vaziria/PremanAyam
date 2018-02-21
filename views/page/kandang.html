@@ -21,9 +21,11 @@
                         <td>{{kandang.user}}</td>
                         <td>{{kandang.kota}}</td>
                         <td>{{kandang.date}}</td>
-                        <td>
-                          <span class="badge badge-success">Active</span>
-                        </td>
+						<td>
+						<button type="button" class="btn btn-sm btn-danger" ng-click="delet(kandang.id)">Delete</button>
+						
+						<button type="button" class="btn btn-sm btn-primary" ng-click="edit(kandang.id)">Edit</button>
+						</td>
                       </tr>
                     </tbody>
                   </table>
