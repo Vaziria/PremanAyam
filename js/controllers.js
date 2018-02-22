@@ -41,6 +41,10 @@ angular.module('app')
 		$state.go('app.kandangForm',{"id":idnya});
 	}
 	
+	$scope.baru = function(){
+		$state.go('app.kandangForm',{"id":""});
+	}
+	
 })
 .controller('kandangForm',function($scope,$stateParams,premanReq,$state){
 	request = premanReq;
@@ -77,6 +81,20 @@ angular.module('app')
 				}
 			});
 			
+		}
+	}else{
+		$scope.submit = function(){
+			datanya = {};
+			datanya.data = {
+				"nama" : $scope.form.nama,
+				"kota" : $scope.form.kota,
+				"user" : localStorage["user"],
+			};
+			request.insert(datanya).then(function(data){
+				if(data.data.data == true){
+					$state.go('app.kandang');
+				}
+			});
 		}
 	}
 
@@ -162,6 +180,93 @@ angular.module('app')
 	$scope.insert = function(){
 		if($scope.vaksinbaru!=""){
 			request.insert({data:{jenis:$scope.vaksinbaru}})
+			.then(function(data){
+				$scope.reload();
+			});
+			
+		}
+	}
+	
+})
+.controller('pakanInfo',function($scope,premanReq){
+	request = premanReq;
+	request.set('pakan','info');
+	$scope.pakans;
+	$scope.reload = function(){
+		request.read().then(function(data){
+			$scope.pakans = data.data.data;
+			console.log($scope.pakans);
+			$scope.$apply;
+		});
+	};
+	$scope.reload();
+	
+	//delete
+	$scope.delet = function(data){
+		var ask = confirm("are you Sure..?");
+		if(ask == true){
+			request.delet({token:localStorage['token'],cond:["id","=",data]})
+			.then(function(data){
+				console.log(data);
+				if(data.data.status == "ok"){
+					$scope.reload();
+				}else{
+					alert("fails");
+				}
+			});
+			
+			
+		}
+		
+		
+	}
+	
+	$scope.insert = function(){
+		if($scope.vaksinbaru!=""){
+			request.insert({data:{jenis:$scope.pakanBaru}})
+			.then(function(data){
+				$scope.reload();
+			});
+			
+		}
+	}
+	
+}).controller('obatInfo',function($scope,premanReq){
+	request = premanReq;
+	request.set('obat','info');
+	$scope.obats;
+	$scope.reload = function(){
+		request.read().then(function(data){
+			$scope.obats = data.data.data;
+			console.log($scope.pakans);
+			$scope.$apply;
+		});
+	};
+	$scope.reload();
+	
+	//delete
+	$scope.delet = function(data){
+		var ask = confirm("are you Sure..?");
+		if(ask == true){
+			request.delet({token:localStorage['token'],cond:["id","=",data]})
+			.then(function(data){
+				console.log(data);
+				if(data.data.status == "ok"){
+					$scope.reload();
+				}else{
+					alert("fails");
+				}
+			});
+			
+			
+		}
+		
+		
+	}
+	
+	$scope.insert = function(){
+		if($scope.vaksinbaru!=""){
+			request.insert({data:{jenis:$scope.obatBaru}})
 			.then(function(data){
 				$scope.reload();
 			});

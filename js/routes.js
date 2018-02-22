@@ -119,6 +119,26 @@ angular.module('app')
     },
 	
   })
+  .state('app.pakanInfo',{
+	url: '/info-pakan',
+    templateUrl: 'views/page/info/pakan.html',
+    //page title goes here
+	params: { subtitle: 'Info Pakan' },
+    ncyBreadcrumb: {
+      label: 'pakan',
+    },
+	
+  })
+  .state('app.obatInfo',{
+	url: '/info-obat',
+    templateUrl: 'views/page/info/obat.html',
+    //page title goes here
+	params: { subtitle: 'Info Obat' },
+    ncyBreadcrumb: {
+      label: 'obat',
+    },
+	
+  })
   .state('app.test',{
 	url: '/test/:judul',
     templateUrl: 'views/page/test.html',

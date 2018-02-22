@@ -1,12 +1,11 @@
-<div class="col-lg-12" ng-controller="jenisAyamInfo">
+<div class="col-lg-12" ng-controller="pakanInfo">
               <div class="card">
                 <div class="card-header">
-                  <i class="fa fa-align-justify"></i> Jenis Ayam
+                  <i class="fa fa-align-justify"></i> info Pakan
 					<div class="form-group form-actions" style="float:right">
 						
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Nama Kandang" ng-model="jenisbaru">
-							<button type="submit" class="btn btn-sm btn-success" ng-click="insert()"><i class="icon icon-doc"></i> New</button>
+							<button type="submit" class="btn btn-sm btn-primary" ng-click="insert()"><i class="icon icon-doc"></i> New</button>
                           
                         </div>
 					</div>
@@ -15,14 +14,16 @@
                   <table class="table table-responsive-sm table-bordered table-striped table-sm">
                     <thead>
                       <tr>
-                        <th>Jenis</th>
+                        <th>Nama</th>
+                        <th>Harga</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="ayam in jenisAyams">
-                        <td>{{ayam.jenis}}</td>
+                      <tr ng-repeat="data in pakans">
+                        <td>{{data.nama}}</td>
+                        <td>{{data.harga}}</td>
                         <td>
-                          <button type="button" class="btn btn-sm btn-danger" ng-click="delet(ayam.jenis)"><i class="icon icon-close"></i> Delete</button>
+                          <button type="button" class="btn btn-sm btn-danger" ng-click="delet(data.id)"><i class="icon icon-close"></i> Delete</button>
                         </td>
                       </tr>
                     </tbody>
