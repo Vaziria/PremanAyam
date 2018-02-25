@@ -119,6 +119,16 @@ angular.module('app')
     },
 	
   })
+  .state('app.vaksinInfoForm',{
+	url: '/info-vaksin/:id',
+    templateUrl: 'views/page/info/vaksinForm.html',
+    //page title goes here
+	params: { subtitle: 'Info Vaksin' },
+    ncyBreadcrumb: {
+      label: 'vaksin',
+    },
+	
+  })
   .state('app.pakanInfo',{
 	url: '/info-pakan',
     templateUrl: 'views/page/info/pakan.html',
@@ -129,9 +139,29 @@ angular.module('app')
     },
 	
   })
+  .state('app.pakanInfoForm',{
+	url: '/info-pakan/:id',
+    templateUrl: 'views/page/info/pakanForm.html',
+    //page title goes here
+	params: { subtitle: 'Info Pakan' },
+    ncyBreadcrumb: {
+      label: 'pakan',
+    },
+	
+  })
   .state('app.obatInfo',{
 	url: '/info-obat',
     templateUrl: 'views/page/info/obat.html',
+    //page title goes here
+	params: { subtitle: 'Info Obat' },
+    ncyBreadcrumb: {
+      label: 'obat',
+    },
+	
+  })
+  .state('app.obatInfoForm',{
+	url: '/info-obat/:id',
+    templateUrl: 'views/page/info/obatForm.html',
     //page title goes here
 	params: { subtitle: 'Info Obat' },
     ncyBreadcrumb: {

@@ -144,7 +144,7 @@ angular.module('app')
 	}
 	
 })
-.controller('vaksinInfo',function($scope,premanReq){
+.controller('vaksinInfo',function($scope,premanReq,$state){
 	request = premanReq;
 	request.set('vaksin','info');
 	$scope.vaksins;
@@ -175,6 +175,8 @@ angular.module('app')
 		}
 		
 		
+		
+		
 	}
 	
 	$scope.insert = function(){
@@ -187,8 +189,75 @@ angular.module('app')
 		}
 	}
 	
+	$scope.edit = function(data){
+		$state.go('app.vaksinInfoForm',{id:data});
+	}
+	
 })
-.controller('pakanInfo',function($scope,premanReq){
+.controller('vaksinInfoForm',function($scope,premanReq,$state,$stateParams){
+	request = premanReq;
+	request.set('vaksin','info');
+	
+	$scope.form = [];
+	$scope.load = function(){
+		data = ['id','=',$stateParams.id];
+		request.read({cond:data}).then(function(datanya){
+			data = datanya.data.data[0];
+			keys = Object.keys(data);
+			a = 0;
+			while(a<keys.length){
+				$scope.form[keys[a]] = data[keys[a]];
+				a++;
+			}
+			$scope.$apply;
+			
+		});
+	}
+	
+	
+	if($stateParams != "baru"){
+		$scope.title = "Edit"
+		$scope.load();
+		
+		$scope.submit = function(){
+			datanya = {};
+			datanya.cond =["id","=",$stateParams.id];
+			datanya.data = {}
+			keys = Object.keys($scope.form);
+			a = 0;
+			while(a<keys.length){
+				datanya.data[keys[a]] = $scope.form[keys[a]];
+				a++;
+			}
+			request.update(datanya).then(function(data){
+				if(data.data.data == true){
+					$state.go('app.vaksinInfo');
+				}
+			});
+		}
+		
+		
+	}else{
+		$scope.title = "Baru";
+		$scope.submit = function(){
+			datanya = {};
+			datanya.data = {}
+			keys = Object.keys($scope.form);
+			a = 0;
+			while(a<keys.length){
+				datanya.data[keys[a]] = $scope.form[keys[a]];
+				a++;
+			}
+			request.insert(datanya).then(function(data){
+				if(data.data.data == true){
+					$state.go('app.pakanInfo');
+				}
+			});
+		}
+		
+	}
+})
+.controller('pakanInfo',function($scope,premanReq,$state){
 	request = premanReq;
 	request.set('pakan','info');
 	$scope.pakans;
@@ -231,18 +300,93 @@ angular.module('app')
 		}
 	}
 	
-}).controller('obatInfo',function($scope,premanReq){
+	$scope.edit = function(data){
+		$state.go('app.pakanInfoForm',{id:data});
+	}
+	
+	
+})
+.controller('pakanInfoForm',function($scope,premanReq,$state,$stateParams){
+	request = premanReq;
+	request.set('pakan','info');
+	
+	$scope.form = [];
+	$scope.load = function(){
+		data = ['id','=',$stateParams.id];
+		request.read({cond:data}).then(function(datanya){
+			data = datanya.data.data[0];
+			keys = Object.keys(data);
+			a = 0;
+			while(a<keys.length){
+				$scope.form[keys[a]] = data[keys[a]];
+				a++;
+			}
+			$scope.$apply;
+			
+		});
+	}
+	
+	
+	if($stateParams != "baru"){
+		$scope.title = "Edit"
+		$scope.load();
+		
+		$scope.submit = function(){
+			datanya = {};
+			datanya.cond =["id","=",$stateParams.id];
+			datanya.data = {}
+			keys = Object.keys($scope.form);
+			a = 0;
+			while(a<keys.length){
+				datanya.data[keys[a]] = $scope.form[keys[a]];
+				a++;
+			}
+			request.update(datanya).then(function(data){
+				if(data.data.data == true){
+					$state.go('app.pakanInfo');
+				}
+			});
+		}
+		
+		
+	}else{
+		$scope.title = "Baru";
+		$scope.submit = function(){
+			datanya = {};
+			datanya.data = {}
+			keys = Object.keys($scope.form);
+			a = 0;
+			while(a<keys.length){
+				datanya.data[keys[a]] = $scope.form[keys[a]];
+				a++;
+			}
+			request.insert(datanya).then(function(data){
+				if(data.data.data == true){
+					$state.go('app.pakanInfo');
+				}
+			});
+		}
+		
+	}
+})
+
+.controller('obatInfo',function($scope,premanReq,$state){
 	request = premanReq;
 	request.set('obat','info');
 	$scope.obats;
 	$scope.reload = function(){
 		request.read().then(function(data){
 			$scope.obats = data.data.data;
-			console.log($scope.pakans);
+			//console.log($scope.pakans);
 			$scope.$apply;
 		});
 	};
 	$scope.reload();
+	
+	
+	$scope.edit = function(data){
+		$state.go('app.obatInfoForm',{id:data});
+	}
 	
 	//delete
 	$scope.delet = function(data){
@@ -274,6 +418,69 @@ angular.module('app')
 		}
 	}
 	
+})
+.controller('obatInfoForm',function($scope,premanReq,$state,$stateParams){
+	request = premanReq;
+	request.set('obat','info');
+	
+	$scope.form = [];
+	$scope.load = function(){
+		data = ['id','=',$stateParams.id];
+		request.read({cond:data}).then(function(datanya){
+			data = datanya.data.data[0];
+			keys = Object.keys(data);
+			a = 0;
+			while(a<keys.length){
+				$scope.form[keys[a]] = data[keys[a]];
+				a++;
+			}
+			$scope.$apply;
+			
+		});
+	}
+	
+	
+	if($stateParams != "baru"){
+		$scope.title = "Edit"
+		$scope.load();
+		
+		$scope.submit = function(){
+			datanya = {};
+			datanya.cond =["id","=",$stateParams.id];
+			datanya.data = {}
+			keys = Object.keys($scope.form);
+			a = 0;
+			while(a<keys.length){
+				datanya.data[keys[a]] = $scope.form[keys[a]];
+				a++;
+			}
+			request.update(datanya).then(function(data){
+				if(data.data.data == true){
+					$state.go('app.obatInfo');
+				}
+			});
+		}
+		
+		
+	}else{
+		$scope.title = "Baru";
+		$scope.submit = function(){
+			datanya = {};
+			datanya.data = {}
+			keys = Object.keys($scope.form);
+			a = 0;
+			while(a<keys.length){
+				datanya.data[keys[a]] = $scope.form[keys[a]];
+				a++;
+			}
+			request.insert(datanya).then(function(data){
+				if(data.data.data == true){
+					$state.go('app.obatInfo');
+				}
+			});
+		}
+		
+	}
 })
 .controller('test',function($scope,premanReq,$http,$httpParamSerializerJQLike,$stateParams,$state){
 	$scope.judul = $stateParams.judul;
