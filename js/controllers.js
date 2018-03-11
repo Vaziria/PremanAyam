@@ -100,6 +100,42 @@ angular.module('app')
 
 	
 })
+//-----------------------------------LOG-------------------------------//
+//HARIAN
+.controller('logHarian',function($scope,premanReq){
+	$scope.kandangs =[];
+	$scope.logs =[];
+	
+	$scope.get_kandang = function(){
+		request = premanReq;
+		request.set('kandang','kandang');
+		request.read().then(function(data){
+			$scope.kandangs = data.data.data;
+			$scope.$apply;
+		});
+	}
+	
+	$scope.getLog = function(id){
+		request = premanReq;
+		request.set('harian','kandang');
+		
+	request.read({cond:["id","=",id]}).then(function(data){
+			$scope.logs = data.data.data;
+			console.log($scope.logs);
+			$scope.$apply;
+		});
+	}
+	
+	$scope.get_kandang();
+	
+	$scope.$watch('idActive',function(){
+		if($scope.idActive!="" || $scope.idActive!=null){
+			$scope.getLog($scope.idActive);
+			
+		}
+	});
+	
+})
 //////////////////////////////////////////info 
 .controller('jenisAyamInfo',function($scope,premanReq){
 	request = premanReq;

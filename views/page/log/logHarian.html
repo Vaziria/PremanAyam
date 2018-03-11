@@ -1,0 +1,64 @@
+<div class="col-lg-12" ng-controller="logHarian">
+	<div class="card">
+                <div class="card-header">
+					<div class="col-md-9">
+						<label class="col-md-3 col-form-label" for="select"><strong>Pilih Kandang</strong></label>
+                        <select id="select" name="select" class="form-control form-control-sm" ng-model="idActive">
+                          <option value="{{kandang.id}}" ng-repeat="kandang in kandangs">{{kandang.nama}}</option>
+                        </select>
+					</div>
+				  
+                </div>
+
+            </div>
+			
+			
+			
+			
+			
+              <div class="card">
+                <div class="card-header">
+                  <i class="fa fa-align-justify"></i> Daftar Kandang
+				  <button type="button" style="float:right" class="btn btn-sm btn-success" ng-click="baru()">New</button>
+                </div>
+                <div class="card-body">
+                  <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                    <thead>
+                      <tr>
+                        <th>Pakan</th>
+                        <th>Jum</th>
+                        <th>Harga</th>
+                        <th>Mati</th>
+                        <th>Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="log in logs">
+                        <td>{{log.pakan}}</td>
+                        <td>{{log.jum}}</td>
+                        <td>{{log.harga}}</td>
+                        <td>{{log.mati}}</td>
+                        <td>{{log.date}}</td>
+						<td>
+						<button type="button" class="btn btn-sm btn-danger" ng-click="delet(kandang.id)">Delete</button>
+						
+						<button type="button" class="btn btn-sm btn-primary" ng-click="edit(kandang.id)">Edit</button>
+						</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <nav>
+                    <ul class="pagination">
+                      <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                      <li class="page-item active">
+                        <a class="page-link" href="#">1</a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#">4</a></li>
+                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+     </div>

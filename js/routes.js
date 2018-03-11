@@ -98,7 +98,22 @@ angular.module('app')
       label: 'Kandang',
     },
   })
-  //info
+  //----------------------------------------------log-----------------------//
+  .state('app.logHarian',{
+	url: '/log-ayam',
+    templateUrl: 'views/page/log/logHarian.html',
+    //page title goes here
+	params: { subtitle: 'log Harian' },
+    ncyBreadcrumb: {
+      label: 'log',
+    },
+	
+  })
+  
+  
+  
+  
+  //--------------------------------------info-----------------------------//
   .state('app.jenisAyamInfo',{
 	url: '/info-ayam',
     templateUrl: 'views/page/info/jenisayam.html',
